@@ -11,6 +11,8 @@ class SegmentTree {
 public:
     SegmentTree(std::vector<ValueType>& v);
 
+    int getSize() { return size; }
+
     void init(std::vector<ValueType>& v, int l, int r, int o);
     ValueType queryMax(int lv, int rv);
     ValueType queryMax(int lv, int rv, int l, int r, int o);
@@ -23,7 +25,7 @@ public:
     void mulInterval(int lv, int rv, ValueType x);
     void mulInterval(int lv, int rv, ValueType x, int l, int r, int o);
 
-// private:
+private:
     std::vector<ValueType> minVal;
     std::vector<ValueType> maxVal;
     std::vector<ValueType> sumVal;
@@ -45,6 +47,8 @@ SegmentTree<ValueType>::SegmentTree(std::vector<ValueType>& v) {
         sumVal.push_back(v[0]);
         hasAddFlag.push_back(false);
         hasMulFlag.push_back(false);
+        addFlag.push_back(v[0]);
+        mulFlag.push_back(v[0]);
     }
     init(v, 0, size - 1, 1);
 }
